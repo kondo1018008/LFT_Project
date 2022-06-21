@@ -18,7 +18,8 @@ class Game(models.Model):
 
 class Player(models.Model):
     player_name = models.CharField(max_length=100)
-    player_twitter_link = models.URLField()
+    player_twitter_link = models.URLField(null=True)
+    player_discord_link = models.URLField(null=True)
 
     class Meta:
         db_table = 'player'
@@ -30,18 +31,18 @@ class Player(models.Model):
         return self.player_name
 
 
-class Player_Game(models.Model):
-    Player = models.ForeignKey(Player, on_delete=models.CASCADE())
-    Game = models.ForeignKey(Game, on_delete=models.CASCADE())
-
-    class Meta:
-        db_table = 'player_game_relation'
+# class Player_Game(models.Model):
+#     Player = models.ForeignKey(Player, on_delete=models.CASCADE)
+#     Game = models.ForeignKey(Game, on_delete=models.CASCADE)
+#
+#     class Meta:
+#         db_table = 'player_game_relation'
 
 
 class LFT(models.Model):
     lft_name = models.CharField(max_length=100)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE())
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
     description = models.TextField()
 
     class Meta:
