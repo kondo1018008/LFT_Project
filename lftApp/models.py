@@ -13,7 +13,6 @@ class Genre(models.Model):
 
 class Game(models.Model):
     game_title = models.CharField(max_length=200)
-    game_genre = models.
     def __str__(self):
         return self.game_title
 
